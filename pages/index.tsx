@@ -1,8 +1,10 @@
+import SearchInput from "@/components/SearchInput";
+
 const Home = () => {
   return (
     <div className="bg-white">
       <header className="bg-[#F9F9FB] pt-14 pr-6 pb-8 pl-6">
-        <div className="flex justify-between items-center">
+        <div className="flex justify-between items-center mb-7">
           <div className="">
             <h1 className="font-semibold text-2xl text-[#1b1b1b] mb-2">
               Welcome 👋
@@ -19,7 +21,7 @@ const Home = () => {
             </div>
           </div>
         </div>
-        <div className="">Search</div>
+        <SearchInput />
       </header>
     </div>
   );
