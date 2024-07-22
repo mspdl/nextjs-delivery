@@ -1,6 +1,9 @@
 import SearchInput from "@/components/SearchInput";
 
 const Home = () => {
+  const handleSearch = (searchValue: string) => {
+    console.log(searchValue);
+  };
   return (
     <div className="bg-white">
       <header className="bg-[#F9F9FB] pt-14 pr-6 pb-8 pl-6">
@@ -21,7 +24,7 @@ const Home = () => {
             </div>
           </div>
         </div>
-        <SearchInput />
+        <SearchInput mainColor="#fb9400" onSearch={handleSearch} />
       </header>
     </div>
   );
