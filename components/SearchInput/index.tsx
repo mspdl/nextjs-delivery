@@ -17,7 +17,7 @@ const SearchInput = ({ mainColor, onSearch }: Props) => {
 
   return (
     <div
-      className="bg-white flex p-2 rounded-md border-[1px] border-solid max-w-[80%]"
+      className="bg-white flex p-2 rounded-md border-[1px] border-solid"
       style={{ borderColor: focused ? mainColor : "#fff" }}
     >
       <div
