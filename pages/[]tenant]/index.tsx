@@ -1,4 +1,5 @@
 import { Banner } from "@/components/Banner";
+import { ProductItem } from "@/components/ProductItem";
 import SearchInput from "@/components/SearchInput";
 
 const Tenant = () => {
@@ -30,6 +31,11 @@ const Tenant = () => {
       </header>
 
       <Banner />
+      <div className="grid grid-cols-2 gap-6 mx-6">
+        <ProductItem />
+        <ProductItem />
+        <ProductItem />
+      </div>
     </div>
   );
 };
