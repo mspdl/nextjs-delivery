@@ -15,7 +15,7 @@ export const useApi = () => ({
         };
       case "spdlpizza":
         return {
-          name: "SPDL Burger",
+          name: "SPDL Pizza",
           mainColor: "#00f",
           secondColor: "#0f0",
         };

@@ -1,6 +1,8 @@
 import { Banner } from "@/components/Banner";
 import { ProductItem } from "@/components/ProductItem";
 import SearchInput from "@/components/SearchInput";
+import { useApi } from "@/libs/useApi";
+import { GetServerSideProps } from "next";
 
 const Tenant = () => {
   const handleSearch = (searchValue: string) => {
@@ -71,3 +73,17 @@ const Tenant = () => {
 };
 
 export default Tenant;
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const { tenant: tenantSlug } = context.query;
+
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const api = useApi();
+  const tenant = await api.getTenant(tenantSlug as string);
+
+  if (!tenant) {
+    return { redirect: { destination: "/", permanent: false } };
+  }
+
+  return { props: { tenant } };
+};
