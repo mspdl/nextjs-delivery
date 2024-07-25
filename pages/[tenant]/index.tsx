@@ -1,10 +1,10 @@
 import { Banner } from "@/components/Banner";
 import { ProductItem } from "@/components/ProductItem";
 import SearchInput from "@/components/SearchInput";
-import { useApi } from "@/libs/useApi";
+import { getTenantResponse, useApi } from "@/libs/useApi";
 import { GetServerSideProps } from "next";
 
-const Tenant = () => {
+const Tenant = (data: Props) => {
   const handleSearch = (searchValue: string) => {
     console.log(searchValue);
   };
@@ -23,13 +23,22 @@ const Tenant = () => {
           </div>
           <div className="">
             <div className="w-6 h-5 flex flex-col justify-between">
-              <div className="bg-[#fb9400] h-1 rounded-md"></div>
-              <div className="bg-[#fb9400] h-1 rounded-md"></div>
-              <div className="bg-[#fb9400] h-1 rounded-md"></div>
+              <div
+                className={`bg-[${data.tenant.mainColor}] h-1 rounded-md`}
+              ></div>
+              <div
+                className={`bg-[${data.tenant.mainColor}] h-1 rounded-md`}
+              ></div>
+              <div
+                className={`bg-[${data.tenant.mainColor}] h-1 rounded-md`}
+              ></div>
             </div>
           </div>
         </div>
-        <SearchInput mainColor="#fb9400" onSearch={handleSearch} />
+        <SearchInput
+          mainColor={data.tenant.mainColor}
+          onSearch={handleSearch}
+        />
       </header>
 
       <Banner />
@@ -42,8 +51,8 @@ const Tenant = () => {
             categoryName: "Tradicional",
             price: "R$ 25,00",
           }}
-          mainColor="#fb9400"
-          secondColor="#FFF9F2"
+          mainColor={data.tenant.mainColor}
+          secondColor={data.tenant.secondColor}
         />
         <ProductItem
           data={{
@@ -53,8 +62,8 @@ const Tenant = () => {
             categoryName: "Tradicional",
             price: "R$ 25,00",
           }}
-          mainColor="#fb9400"
-          secondColor="#FFF9F2"
+          mainColor={data.tenant.mainColor}
+          secondColor={data.tenant.secondColor}
         />
         <ProductItem
           data={{
@@ -64,8 +73,8 @@ const Tenant = () => {
             categoryName: "Tradicional",
             price: "R$ 25,00",
           }}
-          mainColor="#fb9400"
-          secondColor="#FFF9F2"
+          mainColor={data.tenant.mainColor}
+          secondColor={data.tenant.secondColor}
         />
       </div>
     </div>
@@ -73,6 +82,10 @@ const Tenant = () => {
 };
 
 export default Tenant;
+
+type Props = {
+  tenant: getTenantResponse;
+};
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { tenant: tenantSlug } = context.query;
