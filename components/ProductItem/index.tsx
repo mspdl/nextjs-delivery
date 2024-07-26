@@ -11,7 +11,7 @@ export const ProductItem = ({ data, mainColor, secondColor }: Props) => {
   return (
     <Link href={`/delivery/product/${data.id}`}>
       <div className="bg-white shadow rounded-lg overflow-hidden">
-        <div className={`bg-[${secondColor}] h-24`}></div>
+        <div className="h-24" style={{ backgroundColor: secondColor }}></div>
         <div className="p-3">
           <div className="text-center mt-[-90px]">
             <img className="w-full h-auto" src={data.image} alt="" />
@@ -20,7 +20,7 @@ export const ProductItem = ({ data, mainColor, secondColor }: Props) => {
             {data.categoryName}
           </div>
           <div className={`text-xl font-bold text-[#1b1b1b]`}>{data.name}</div>
-          <div className={`text-sm font-semibold text-[${mainColor}]`}>
+          <div className="text-sm font-semibold" style={{ color: mainColor }}>
             {data.price}
           </div>
         </div>
