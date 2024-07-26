@@ -1,10 +1,19 @@
 import { Banner } from "@/components/Banner";
 import { ProductItem } from "@/components/ProductItem";
 import SearchInput from "@/components/SearchInput";
-import { getTenantResponse, useApi } from "@/libs/useApi";
+import { useAppContext } from "@/contexts/AppContext";
+import { useApi } from "@/libs/useApi";
+import { Tenant } from "@/types/Tenant";
 import { GetServerSideProps } from "next";
+import { useEffect } from "react";
 
-const Tenant = (data: Props) => {
+const Home = (data: Props) => {
+  const { tenant, setTenant } = useAppContext();
+
+  useEffect(() => {
+    setTenant(data.tenant);
+  }, []);
+
   const handleSearch = (searchValue: string) => {
     console.log(searchValue);
   };
@@ -24,13 +33,16 @@ const Tenant = (data: Props) => {
           <div className="">
             <div className="w-6 h-5 flex flex-col justify-between">
               <div
-                className={`bg-[${data.tenant.mainColor}] h-1 rounded-md`}
+                className={"h-1 rounded-md"}
+                style={{ backgroundColor: tenant?.mainColor }}
               ></div>
               <div
-                className={`bg-[${data.tenant.mainColor}] h-1 rounded-md`}
+                className={"h-1 rounded-md"}
+                style={{ backgroundColor: tenant?.mainColor }}
               ></div>
               <div
-                className={`bg-[${data.tenant.mainColor}] h-1 rounded-md`}
+                className={"h-1 rounded-md"}
+                style={{ backgroundColor: tenant?.mainColor }}
               ></div>
             </div>
           </div>
@@ -81,10 +93,10 @@ const Tenant = (data: Props) => {
   );
 };
 
-export default Tenant;
+export default Home;
 
 type Props = {
-  tenant: getTenantResponse;
+  tenant: Tenant;
 };
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
