@@ -47,10 +47,7 @@ const Home = (data: Props) => {
             </div>
           </div>
         </div>
-        <SearchInput
-          mainColor={data.tenant.mainColor}
-          onSearch={handleSearch}
-        />
+        <SearchInput onSearch={handleSearch} />
       </header>
 
       <Banner />
@@ -63,8 +60,6 @@ const Home = (data: Props) => {
             categoryName: "Tradicional",
             price: "R$ 25,00",
           }}
-          mainColor={data.tenant.mainColor}
-          secondColor={data.tenant.secondColor}
         />
         <ProductItem
           data={{
@@ -74,8 +69,6 @@ const Home = (data: Props) => {
             categoryName: "Tradicional",
             price: "R$ 25,00",
           }}
-          mainColor={data.tenant.mainColor}
-          secondColor={data.tenant.secondColor}
         />
         <ProductItem
           data={{
@@ -85,8 +78,6 @@ const Home = (data: Props) => {
             categoryName: "Tradicional",
             price: "R$ 25,00",
           }}
-          mainColor={data.tenant.mainColor}
-          secondColor={data.tenant.secondColor}
         />
       </div>
     </div>
