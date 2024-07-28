@@ -1,3 +1,4 @@
+import { Header } from "@/components/Header";
 import { useAppContext } from "@/contexts/AppContext";
 import { useApi } from "@/libs/useApi";
 import { Tenant } from "@/types/Tenant";
@@ -17,6 +18,7 @@ const Login = (data: Props) => {
       <Head>
         <title>Login | {data.tenant.name}</title>
       </Head>
+      <Header />
       <div>Login</div>
     </div>
   );

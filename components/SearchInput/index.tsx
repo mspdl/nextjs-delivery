@@ -6,7 +6,7 @@ type Props = {
   onSearch: (searchValue: string) => void;
 };
 
-const SearchInput = ({ onSearch }: Props) => {
+export const SearchInput = ({ onSearch }: Props) => {
   const { tenant } = useAppContext();
   const [focused, setFocused] = useState(false);
   const [searchValue, setSearchValue] = useState("");
@@ -41,5 +41,3 @@ const SearchInput = ({ onSearch }: Props) => {
     </div>
   );
 };
-
-export default SearchInput;
