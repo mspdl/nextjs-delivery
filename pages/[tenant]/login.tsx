@@ -14,11 +14,11 @@ const Login = (data: Props) => {
   }, []);
 
   return (
-    <div className="">
+    <div className="bg-white pt-12">
       <Head>
         <title>Login | {data.tenant.name}</title>
       </Head>
-      <Header />
+      <Header color={data.tenant.mainColor} backHref={`/${data.tenant.slug}`} />
       <div>Login</div>
     </div>
   );
