@@ -10,6 +10,7 @@ import { useEffect, useState } from "react";
 const Login = (data: Props) => {
   const { tenant, setTenant } = useAppContext();
   const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   useEffect(() => {
     setTenant(data.tenant);
@@ -26,6 +27,13 @@ const Login = (data: Props) => {
         placeholder="Type your e-mail"
         value={email}
         onChange={setEmail}
+      />
+      <InputField
+        color={data.tenant.mainColor}
+        placeholder="Type your password"
+        value={password}
+        onChange={setPassword}
+        isPassword
       />
     </div>
   );
