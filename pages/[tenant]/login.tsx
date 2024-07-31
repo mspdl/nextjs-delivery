@@ -1,3 +1,4 @@
+import { Button } from "@/components/Button";
 import { Header } from "@/components/Header";
 import { InputField } from "@/components/InputField";
 import { useAppContext } from "@/contexts/AppContext";
@@ -16,8 +17,10 @@ const Login = (data: Props) => {
     setTenant(data.tenant);
   }, []);
 
+  const handleSubmit = () => {};
+
   return (
-    <div className="bg-white pt-12">
+    <div className="bg-white py-12 px-6 ">
       <Head>
         <title>Login | {data.tenant.name}</title>
       </Head>
@@ -34,6 +37,13 @@ const Login = (data: Props) => {
         value={password}
         onChange={setPassword}
         isPassword
+      />
+
+      <Button
+        color={data.tenant.mainColor}
+        label="Login"
+        onClick={handleSubmit}
+        isFilled
       />
     </div>
   );
