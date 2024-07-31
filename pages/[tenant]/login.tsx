@@ -18,6 +18,7 @@ const Login = (data: Props) => {
   }, []);
 
   const handleSubmit = () => {};
+  const handleSignUp = () => {};
 
   return (
     <div className="bg-white py-12 px-6 ">
@@ -25,26 +26,51 @@ const Login = (data: Props) => {
         <title>Login | {data.tenant.name}</title>
       </Head>
       <Header color={data.tenant.mainColor} backHref={`/${data.tenant.slug}`} />
-      <InputField
-        color={data.tenant.mainColor}
-        placeholder="Type your e-mail"
-        value={email}
-        onChange={setEmail}
-      />
-      <InputField
-        color={data.tenant.mainColor}
-        placeholder="Type your password"
-        value={password}
-        onChange={setPassword}
-        isPassword
-      />
 
-      <Button
-        color={data.tenant.mainColor}
-        label="Login"
-        onClick={handleSubmit}
-        isFilled
-      />
+      <div className="font-semibold text-4xl mt-5 mb-10 text-center">
+        {data.tenant.name}
+      </div>
+
+      <div className="font-normal text-lg text-[#1b1b1bcc] text-center m-auto w-[50%] pb-10 border-b-2 border-black">
+        Use your credentials to login.
+      </div>
+
+      <div className="">
+        <div className="">
+          <InputField
+            color={data.tenant.mainColor}
+            placeholder="Type your e-mail"
+            value={email}
+            onChange={setEmail}
+          />
+        </div>
+        <div className="">
+          <InputField
+            color={data.tenant.mainColor}
+            placeholder="Type your password"
+            value={password}
+            onChange={setPassword}
+            isPassword
+          />
+        </div>
+
+        <div className="">
+          <Button
+            color={data.tenant.mainColor}
+            label="Login"
+            onClick={handleSubmit}
+            isFilled
+          />
+        </div>
+      </div>
+      <div className="">Forgot your password? Click here</div>
+      <div className="">
+        <Button
+          color={data.tenant.mainColor}
+          label="Sign Up"
+          onClick={handleSignUp}
+        />
+      </div>
     </div>
   );
 };
