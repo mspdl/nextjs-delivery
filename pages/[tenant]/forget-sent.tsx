@@ -1,17 +1,16 @@
 import { Button } from "@/components/Button";
 import { Header } from "@/components/Header";
-import { InputField } from "@/components/InputField";
+import { Icon } from "@/components/Icon";
 import { useAppContext } from "@/contexts/AppContext";
 import { useApi } from "@/libs/useApi";
 import { Tenant } from "@/types/Tenant";
 import { GetServerSideProps } from "next";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
-const Forget = (data: Props) => {
+const ForgetSent = (data: Props) => {
   const { tenant, setTenant } = useAppContext();
-  const [email, setEmail] = useState("");
 
   const router = useRouter();
 
@@ -19,53 +18,38 @@ const Forget = (data: Props) => {
     setTenant(data.tenant);
   }, []);
 
-  const handleForget = () => {
-    router.push(`/${data.tenant.slug}/forget-sent`)
+  const handleLogin = () => {
+    router.push(`/${data.tenant.slug}/login`);
   };
 
   return (
     <div className="bg-white py-12 px-6 ">
       <Head>
-        <title>Forget password | {data.tenant.name}</title>
+        <title>E-mail sent | {data.tenant.name}</title>
       </Head>
       <Header
         color={data.tenant.mainColor}
-        backHref={`/${data.tenant.slug}/login`}
+        backHref={`/${data.tenant.slug}/forget`}
       />
 
-      <div className="font-semibold text-4xl mt-5 mb-10 text-center">
-        {data.tenant.name}
+      <div className="flex justify-center mt-24 mx-auto mb-14">
+        <Icon iconName="mailSent" color={data.tenant.mainColor} width={99} height={81} />
       </div>
 
       <div className="font-semibold text-2xl text-center mb-8">
-        Forget your password?
+        Check your e-mail
       </div>
 
-      <div
-        className="font-normal text-lg text-[#1b1b1bcc] text-center m-auto w-[80%] pb-10 border-b-2 relative"
-        style={{ borderColor: data.tenant.mainColor }}
-      >
-        Fill in the field with your email and receive the necessary instructions
-        to reset your password.
+      <div className="font-normal text-lg text-[#1b1b1bcc] text-center m-auto w-[60%]">
+        We have sent password recovery instructions to your email.
       </div>
 
-      <div className="border-b-2 border-[#e2e2e2] mt-[-2px]"></div>
-
-      <div className="mt-14">
-        <div className="mb-8">
-          <InputField
-            color={data.tenant.mainColor}
-            placeholder="Type your e-mail"
-            value={email}
-            onChange={setEmail}
-          />
-        </div>
-
+      <div className="mt-10">
         <div>
           <Button
             color={data.tenant.mainColor}
-            label="Reset password"
-            onClick={handleForget}
+            label="Got to Login"
+            onClick={handleLogin}
             isFilled
           />
         </div>
@@ -74,7 +58,7 @@ const Forget = (data: Props) => {
   );
 };
 
-export default Forget;
+export default ForgetSent;
 
 type Props = {
   tenant: Tenant;
