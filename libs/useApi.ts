@@ -1,5 +1,4 @@
 import { Product } from "@/types/Product";
-import { Tenant } from "@/types/Tenant";
 
 const TEMPORARY_PRODUCT: Product = {
   id: 1,
@@ -12,7 +11,7 @@ const TEMPORARY_PRODUCT: Product = {
 };
 
 export const useApi = (tenantSlug: string) => ({
-  getTenant: (): boolean | Tenant => {
+  getTenant: async () => {
     switch (tenantSlug) {
       case "spdlburger":
         return {
@@ -33,15 +32,15 @@ export const useApi = (tenantSlug: string) => ({
     }
   },
 
-  getAllProducts: (): Product[] => {
+  getAllProducts: async () => {
     let products = [];
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 5; i++) {
       products.push(TEMPORARY_PRODUCT);
     }
     return products;
   },
 
-  getProductById: () => {
+  getProductById: async () => {
     return TEMPORARY_PRODUCT;
   },
 });

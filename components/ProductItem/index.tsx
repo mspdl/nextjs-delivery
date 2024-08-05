@@ -28,7 +28,7 @@ export const ProductItem = ({ data }: Props) => {
             className="text-sm font-semibold"
             style={{ color: tenant?.mainColor }}
           >
-            {data.price}
+            $ {data.price.toFixed(2)}
           </div>
         </div>
       </div>

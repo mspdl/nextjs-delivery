@@ -3,9 +3,10 @@ import { ProductItem } from "@/components/ProductItem";
 import { SearchInput } from "@/components/SearchInput";
 import { useAppContext } from "@/contexts/AppContext";
 import { useApi } from "@/libs/useApi";
+import { Product } from "@/types/Product";
 import { Tenant } from "@/types/Tenant";
 import { GetServerSideProps } from "next";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const Home = (data: Props) => {
   const { tenant, setTenant } = useAppContext();
@@ -13,6 +14,7 @@ const Home = (data: Props) => {
   useEffect(() => {
     setTenant(data.tenant);
   }, []);
+  const [products, setProducts] = useState<Product[]>(data.products);
 
   const handleSearch = (searchValue: string) => {
     console.log(searchValue);
@@ -52,33 +54,9 @@ const Home = (data: Props) => {
 
       <Banner />
       <div className="grid grid-cols-2 gap-6 mx-6">
-        <ProductItem
-          data={{
-            id: 1,
-            image: "/tmp/burger.png",
-            name: "Texas Burger",
-            categoryName: "Tradicional",
-            price: "R$ 25,00",
-          }}
-        />
-        <ProductItem
-          data={{
-            id: 2,
-            image: "/tmp/burger.png",
-            name: "Texas Burger",
-            categoryName: "Tradicional",
-            price: "R$ 25,00",
-          }}
-        />
-        <ProductItem
-          data={{
-            id: 3,
-            image: "/tmp/burger.png",
-            name: "Texas Burger",
-            categoryName: "Tradicional",
-            price: "R$ 25,00",
-          }}
-        />
+        {products.map((product, index) => (
+          <ProductItem key={index} data={product} />
+        ))}
       </div>
     </div>
   );
@@ -88,6 +66,7 @@ export default Home;
 
 type Props = {
   tenant: Tenant;
+  products: Product[];
 };
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
@@ -101,5 +80,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     return { redirect: { destination: "/", permanent: false } };
   }
 
-  return { props: { tenant } };
+  const products = await api.getAllProducts();
+
+  return { props: { tenant, products } };
 };
