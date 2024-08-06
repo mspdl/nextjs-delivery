@@ -1,4 +1,5 @@
 import { useAppContext } from "@/contexts/AppContext";
+import { useFormatter } from "@/libs/useFormatter";
 import { Product } from "@/types/Product";
 import Link from "next/link";
 
@@ -8,6 +9,7 @@ type Props = {
 
 export const ProductItem = ({ data }: Props) => {
   const { tenant } = useAppContext();
+  const formatter = useFormatter();
 
   return (
     <Link href={`/${tenant?.slug}/product/${data.id}`}>
@@ -28,7 +30,7 @@ export const ProductItem = ({ data }: Props) => {
             className="text-sm font-semibold"
             style={{ color: tenant?.mainColor }}
           >
-            $ {data.price.toFixed(2)}
+            {formatter.formatPrice(data.price)}
           </div>
         </div>
       </div>
