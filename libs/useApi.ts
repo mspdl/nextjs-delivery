@@ -40,7 +40,7 @@ export const useApi = (tenantSlug: string) => ({
     return products;
   },
 
-  getProductById: async () => {
+  getProductById: async (productId: string) => {
     return TEMPORARY_PRODUCT;
   },
 });
