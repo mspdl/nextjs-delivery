@@ -27,13 +27,14 @@ const Product = (data: Props) => {
           color={data.tenant.mainColor}
           backHref={`/${data.tenant.slug}`}
           title={data.product.name}
+          invert
         />
       </div>
       <div
         className="headerBg w-[100vw] h-96 bg-[#333] bg-[url('/assets/product-bg.png')] bg-no-repeat bg-cover"
         style={{ backgroundColor: data.tenant.mainColor }}
       ></div>
-      <div className="productImage mt-[-250px] flex justify-center">
+      <div className="productImage w-[100vw] mt-[-250px] flex justify-center">
         <img
           className="w-auto h-96"
           src={data.product.image}
