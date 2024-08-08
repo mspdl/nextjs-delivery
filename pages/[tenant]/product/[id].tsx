@@ -1,3 +1,4 @@
+import { Header } from "@/components/Header";
 import { useAppContext } from "@/contexts/AppContext";
 import { useApi } from "@/libs/useApi";
 import { Product as ProductType } from "@/types/Product";
@@ -15,12 +16,31 @@ const Product = (data: Props) => {
   const [product, setProduct] = useState<ProductType>(data.product);
 
   return (
-    <div className="">
+    <div className="container bg-white">
       <Head>
         <title>
           {data.product.name} | {data.tenant.name}
         </title>
       </Head>
+      <div className="headerArea absolute left-6 top-16 right-6">
+        <Header
+          color={data.tenant.mainColor}
+          backHref={`/${data.tenant.slug}`}
+          title={data.product.name}
+        />
+      </div>
+      <div
+        className="headerBg w-[100vw] h-96 bg-[#333] bg-[url('/assets/product-bg.png')] bg-no-repeat bg-cover"
+        style={{ backgroundColor: data.tenant.mainColor }}
+      ></div>
+      <div className="productImage mt-[-250px] flex justify-center">
+        <img
+          className="w-auto h-96"
+          src={data.product.image}
+          alt={data.product.name}
+        />
+      </div>
+      ...
     </div>
   );
 };
