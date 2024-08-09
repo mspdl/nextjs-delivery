@@ -1,5 +1,6 @@
 import { Button } from "@/components/Button";
 import { Header } from "@/components/Header";
+import { Quantity } from "@/components/Quantity";
 import { useAppContext } from "@/contexts/AppContext";
 import { useApi } from "@/libs/useApi";
 import { useFormatter } from "@/libs/useFormatter";
@@ -7,7 +8,7 @@ import { Product as ProductType } from "@/types/Product";
 import { Tenant } from "@/types/Tenant";
 import { GetServerSideProps } from "next";
 import Head from "next/head";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const Product = (data: Props) => {
   const { tenant, setTenant } = useAppContext();
@@ -15,6 +16,8 @@ const Product = (data: Props) => {
   useEffect(() => {
     setTenant(data.tenant);
   }, []);
+
+  const [qtCount, setQtCount] = useState(0);
 
   const formatter = useFormatter();
 
@@ -65,7 +68,15 @@ const Product = (data: Props) => {
           Quantity
         </div>
         <div className="area mx-6 flex items-ce">
-          <div className="areaLeft">left</div>
+          <div className="areaLeft">
+            <Quantity
+              color={data.tenant.mainColor}
+              count={qtCount}
+              onUpdadeCount={setQtCount(1)}
+              min={1}
+              max={10}
+            />
+          </div>
           <div
             className="areaRight flex-1 text-right font-semibold text-4xl text-black"
             style={{ color: data.tenant.mainColor }}
