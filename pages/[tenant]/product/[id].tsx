@@ -2,11 +2,12 @@ import { Button } from "@/components/Button";
 import { Header } from "@/components/Header";
 import { useAppContext } from "@/contexts/AppContext";
 import { useApi } from "@/libs/useApi";
+import { useFormatter } from "@/libs/useFormatter";
 import { Product as ProductType } from "@/types/Product";
 import { Tenant } from "@/types/Tenant";
 import { GetServerSideProps } from "next";
 import Head from "next/head";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 const Product = (data: Props) => {
   const { tenant, setTenant } = useAppContext();
@@ -15,7 +16,7 @@ const Product = (data: Props) => {
     setTenant(data.tenant);
   }, []);
 
-  const [product, setProduct] = useState<ProductType>(data.product);
+  const formatter = useFormatter();
 
   const handleAddToCart = () => {};
 
@@ -55,18 +56,25 @@ const Product = (data: Props) => {
         >
           {data.product.name}
         </div>
-        <div className="line border-t-2 border-[#e2e2e2] mt-[-2px] mx-6"></div>
+        <div className="line border-t-2 border-[#e2e2e2] mt-[-2px] mx-6 mb-4"></div>
 
-        <div className="description font-normal text-base text-[#1b1b1b]/[.5]">
+        <div className="description font-normal text-base text-[#1b1b1b]/[.5] mb-8">
           {data.product.description}
         </div>
-        <div className="qtdText">Quantity</div>
-        <div className="area">
-          <div className="areaLeft"></div>
-          <div className="areaRight"></div>
+        <div className="qtdText font-normal text-base text-[#1b1b1b] mb-4">
+          Quantity
+        </div>
+        <div className="area mx-6 flex items-ce">
+          <div className="areaLeft">left</div>
+          <div
+            className="areaRight flex-1 text-right font-semibold text-4xl text-black"
+            style={{ color: data.tenant.mainColor }}
+          >
+            {formatter.formatPrice(data.product.price)}
+          </div>
         </div>
       </div>
-      <div className="buttonArea w-[100vw] px-6">
+      <div className="buttonArea w-[100vw] px-6 my-14">
         <Button
           color={data.tenant.mainColor}
           label="Add to cart"
