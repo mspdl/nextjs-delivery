@@ -33,7 +33,12 @@ const ForgetSent = (data: Props) => {
       />
 
       <div className="flex justify-center mt-24 mx-auto mb-14">
-        <Icon iconName="mailSent" color={data.tenant.mainColor} width={99} height={81} />
+        <Icon
+          iconName="mailSent"
+          color={data.tenant.mainColor}
+          width={99}
+          height={81}
+        />
       </div>
 
       <div className="font-semibold text-2xl text-center mb-8">
@@ -68,8 +73,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const { tenant: tenantSlug } = context.query;
 
   // eslint-disable-next-line react-hooks/rules-of-hooks
-  const api = useApi();
-  const tenant = await api.getTenant(tenantSlug as string);
+  const api = useApi(tenantSlug as string);
+  const tenant = await api.getTenant();
 
   if (!tenant) {
     return { redirect: { destination: "/", permanent: false } };

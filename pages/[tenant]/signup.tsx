@@ -29,7 +29,10 @@ const SignUp = (data: Props) => {
       <Head>
         <title>Register | {data.tenant.name}</title>
       </Head>
-      <Header color={data.tenant.mainColor} backHref={`/${data.tenant.slug}/login`} />
+      <Header
+        color={data.tenant.mainColor}
+        backHref={`/${data.tenant.slug}/login`}
+      />
 
       <div className="font-semibold text-4xl mt-5 mb-10 text-center">
         {data.tenant.name}
@@ -105,8 +108,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const { tenant: tenantSlug } = context.query;
 
   // eslint-disable-next-line react-hooks/rules-of-hooks
-  const api = useApi();
-  const tenant = await api.getTenant(tenantSlug as string);
+  const api = useApi(tenantSlug as string);
+  const tenant = await api.getTenant();
 
   if (!tenant) {
     return { redirect: { destination: "/", permanent: false } };
