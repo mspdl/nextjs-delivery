@@ -1,3 +1,4 @@
+import { Button } from "@/components/Button";
 import { Header } from "@/components/Header";
 import { useAppContext } from "@/contexts/AppContext";
 import { useApi } from "@/libs/useApi";
@@ -13,7 +14,10 @@ const Product = (data: Props) => {
   useEffect(() => {
     setTenant(data.tenant);
   }, []);
+
   const [product, setProduct] = useState<ProductType>(data.product);
+
+  const handleAddToCart = () => {};
 
   return (
     <div className="container bg-white">
@@ -41,7 +45,35 @@ const Product = (data: Props) => {
           alt={data.product.name}
         />
       </div>
-      ...
+      <div className="mx-6">
+        <div className="category font-medium text-base text-[#1b1b1b]">
+          {data.product.categoryName}
+        </div>
+        <div
+          className="title font-semibold text-5xl text-[#1b1b1b] pb-6 border-b-2 border-black w-fit relative"
+          style={{ borderBottomColor: data.tenant.mainColor }}
+        >
+          {data.product.name}
+        </div>
+        <div className="line border-t-2 border-[#e2e2e2] mt-[-2px] mx-6"></div>
+
+        <div className="description font-normal text-base text-[#1b1b1b]/[.5]">
+          {data.product.description}
+        </div>
+        <div className="qtdText">Quantity</div>
+        <div className="area">
+          <div className="areaLeft"></div>
+          <div className="areaRight"></div>
+        </div>
+      </div>
+      <div className="buttonArea w-[100vw] px-6">
+        <Button
+          color={data.tenant.mainColor}
+          label="Add to cart"
+          onClick={handleAddToCart}
+          isFilled
+        />
+      </div>
     </div>
   );
 };
