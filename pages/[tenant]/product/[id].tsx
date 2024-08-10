@@ -18,10 +18,13 @@ const Product = (data: Props) => {
   }, []);
 
   const [qtCount, setQtCount] = useState(0);
-
   const formatter = useFormatter();
 
   const handleAddToCart = () => {};
+
+  const handleUpdateQt = (newCount: number) => {
+    setQtCount(newCount);
+  };
 
   return (
     <div className="container bg-white">
@@ -72,7 +75,7 @@ const Product = (data: Props) => {
             <Quantity
               color={data.tenant.mainColor}
               count={qtCount}
-              onUpdadeCount={setQtCount(1)}
+              onUpdateCount={handleUpdateQt}
               min={1}
               max={10}
             />
