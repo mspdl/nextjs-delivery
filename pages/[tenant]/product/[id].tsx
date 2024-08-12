@@ -17,7 +17,7 @@ const Product = (data: Props) => {
     setTenant(data.tenant);
   }, []);
 
-  const [qtCount, setQtCount] = useState(0);
+  const [qtCount, setQtCount] = useState(1);
   const formatter = useFormatter();
 
   const handleAddToCart = () => {};

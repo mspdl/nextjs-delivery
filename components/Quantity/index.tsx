@@ -1,3 +1,6 @@
+import { useFormatter } from "@/libs/useFormatter";
+import { useEffect, useState } from "react";
+
 type Props = {
   color: string;
   count: number;
@@ -7,12 +10,22 @@ type Props = {
 };
 
 export const Quantity = ({ color, count, onUpdateCount, min, max }: Props) => {
+  const formatter = useFormatter();
+
+  const [canRemove, setCanRemove] = useState(false);
+  const [canAdd, setCanAdd] = useState(false);
+
+  useEffect(() => {
+    setCanRemove(!min || (min && count > min) ? true : false);
+    setCanAdd(!max || (max && count < max) ? true : false);
+  }, [count, min, max]);
+
   const handleRemove = () => {
-    onUpdateCount(count - 1);
+    if (canRemove) onUpdateCount(count - 1);
   };
-  
+
   const handleAdd = () => {
-    onUpdateCount(count + 1);
+    if (canAdd) onUpdateCount(count + 1);
   };
 
   return (
@@ -20,13 +33,25 @@ export const Quantity = ({ color, count, onUpdateCount, min, max }: Props) => {
       <div
         className="button font-medium text-2xl w-12 h-12 flex items-center justify-center text-white bg-black"
         onClick={handleRemove}
+        style={{
+          color: canRemove ? "#fff" : "#96a3ab",
+          backgroundColor: canRemove ? color : "#f2f4f5",
+          cursor: canRemove ? "pointer" : "not-allowed",
+        }}
       >
         -
       </div>
-      <div className="qt font-bold text-lg text-black px-3">{count}</div>
+      <div className="qt font-bold text-lg text-black px-3">
+        {formatter.formatQuantity(count, 2)}
+      </div>
       <div
         className="button font-medium text-2xl w-12 h-12 flex items-center justify-center text-white bg-black"
         onClick={handleAdd}
+        style={{
+          color: canAdd ? "#fff" : "#96a3ab",
+          backgroundColor: canAdd ? color : "#f2f4f5",
+          cursor: canAdd ? "pointer" : "not-allowed",
+        }}
       >
         +
       </div>
