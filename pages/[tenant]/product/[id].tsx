@@ -70,7 +70,7 @@ const Product = (data: Props) => {
         <div className="qtdText font-normal text-base text-[#1b1b1b] mb-4">
           Quantity
         </div>
-        <div className="area mx-6 flex items-ce">
+        <div className="area flex items-ce">
           <div className="areaLeft">
             <Quantity
               color={data.tenant.mainColor}

@@ -7,9 +7,17 @@ type Props = {
   onUpdateCount: (newCount: number) => void;
   min?: number;
   max?: number;
+  small?: boolean;
 };
 
-export const Quantity = ({ color, count, onUpdateCount, min, max }: Props) => {
+export const Quantity = ({
+  color,
+  count,
+  onUpdateCount,
+  min,
+  max,
+  small,
+}: Props) => {
   const formatter = useFormatter();
 
   const [canRemove, setCanRemove] = useState(false);
@@ -37,11 +45,16 @@ export const Quantity = ({ color, count, onUpdateCount, min, max }: Props) => {
           color: canRemove ? "#fff" : "#96a3ab",
           backgroundColor: canRemove ? color : "#f2f4f5",
           cursor: canRemove ? "pointer" : "not-allowed",
+          width: small ? 42 : 48,
+          height: small ? 42 : 48,
         }}
       >
         -
       </button>
-      <div className="qt font-bold text-lg text-black px-3">
+      <div
+        className="qt font-bold text-lg text-black px-3"
+        style={{ fontSize: small ? "16px" : "18px" }}
+      >
         {formatter.formatQuantity(count, 2)}
       </div>
       <button
@@ -51,6 +64,8 @@ export const Quantity = ({ color, count, onUpdateCount, min, max }: Props) => {
           color: canAdd ? "#fff" : "#96a3ab",
           backgroundColor: canAdd ? color : "#f2f4f5",
           cursor: canAdd ? "pointer" : "not-allowed",
+          width: small ? 42 : 48,
+          height: small ? 42 : 48,
         }}
       >
         +
