@@ -30,7 +30,7 @@ export const Quantity = ({ color, count, onUpdateCount, min, max }: Props) => {
 
   return (
     <div className="container flex items-center border border-[#f2f4f5] rounded-md overflow-hidden">
-      <div
+      <button
         className="button font-medium text-2xl w-12 h-12 flex items-center justify-center text-white bg-black"
         onClick={handleRemove}
         style={{
@@ -40,11 +40,11 @@ export const Quantity = ({ color, count, onUpdateCount, min, max }: Props) => {
         }}
       >
         -
-      </div>
+      </button>
       <div className="qt font-bold text-lg text-black px-3">
         {formatter.formatQuantity(count, 2)}
       </div>
-      <div
+      <button
         className="button font-medium text-2xl w-12 h-12 flex items-center justify-center text-white bg-black"
         onClick={handleAdd}
         style={{
@@ -54,7 +54,7 @@ export const Quantity = ({ color, count, onUpdateCount, min, max }: Props) => {
         }}
       >
         +
-      </div>
+      </button>
     </div>
   );
 };

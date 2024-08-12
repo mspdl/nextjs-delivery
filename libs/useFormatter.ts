@@ -5,9 +5,11 @@ export const useFormatter = () => ({
       currency: "USD",
     });
   },
-  formatQuantity: (qt: number, digits: number) => {
-    if (qt < 10) {
-      return `${"0".repeat(digits - 1)}${qt}`;
-    } else return qt;
+  formatQuantity: (qt: number, minDigits: number) => {
+    const remain = minDigits - qt.toString().length;
+
+    if (qt.toString().length >= minDigits) return qt.toString();
+
+    return `${"0".repeat(remain)}${qt}`;
   },
 });
