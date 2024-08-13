@@ -1,7 +1,7 @@
 import { Banner } from "@/components/Banner";
 import { ProductItem } from "@/components/ProductItem";
 import { SearchInput } from "@/components/SearchInput";
-import { useAppContext } from "@/contexts/AppContext";
+import { useAppContext } from "@/contexts/app";
 import { useApi } from "@/libs/useApi";
 import { Product } from "@/types/Product";
 import { Tenant } from "@/types/Tenant";
@@ -14,6 +14,7 @@ const Home = (data: Props) => {
   useEffect(() => {
     setTenant(data.tenant);
   }, []);
+
   const [products, setProducts] = useState<Product[]>(data.products);
 
   const handleSearch = (searchValue: string) => {

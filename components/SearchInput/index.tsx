@@ -1,4 +1,4 @@
-import { useAppContext } from "@/contexts/AppContext";
+import { useAppContext } from "@/contexts/app";
 import { useState } from "react";
 import SearchIcon from "./searchIcon.svg";
 
